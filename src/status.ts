@@ -26,10 +26,15 @@ export interface FailStatus {
 export type Status = OkStatus | FailStatus;
 
 export function ok(): OkStatus {
-  throw new Error("not implemented");
+  return Object.freeze({ ok: true });
 }
 
 export function fail(reason: string): FailStatus {
-  void reason;
-  throw new Error("not implemented");
+  const trimmedReason = reason.trim();
+
+  if (trimmedReason.length === 0) {
+    throw new Error("failure reason must not be empty");
+  }
+
+  return Object.freeze({ ok: false, reason: trimmedReason });
 }
