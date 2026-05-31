@@ -1,0 +1,16 @@
+version: 1
+bootstrap:
+  run: "npm install"
+tiers:
+  fast:
+    - name: typecheck
+      run: "npx tsc --noEmit -p tsconfig.json"
+  slow:
+    - name: test
+      run: "npm test"
+when:
+  fast:
+    - per_iteration
+  slow:
+    - pre_audit
+    - pre_merge
