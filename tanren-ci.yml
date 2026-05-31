@@ -1,6 +1,6 @@
 version: 1
 bootstrap:
-  run: "npm install --no-package-lock --no-audit --no-fund"
+  run: "npm install"
 tiers:
   fast:
     - name: typecheck
